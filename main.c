@@ -3,40 +3,41 @@
 int main()
 {
     char operacao;
-    int count;
-    double numero, resultado;
+    double numeros[2], resultado = 0;
     
     // operação
     printf("Bem vindo(a) a calculadora!\n");
     printf("Digite a operação que deseja fazer (+, -, *, /): ");
     scanf("%c", &operacao);
     
-    for(count=1; count<=2; count++)
+    for(int i = 0; i < 2; i++)
     {
-        printf("Digite um número: ");
-        scanf("%lf", &numero);
+        printf("Digite o número %d: ", i + 1);
+        scanf("%lf", &numeros[i]);
     }
     
     switch(operacao) {
         case '+':
-            resultado = numero + numero;
+            resultado = numeros[0] + numeros[1];
             break;
         case '-':
-            resultado = numero - numero;
+            resultado = numeros[0] - numeros[1];
             break;
         case '*':
-            resultado = numero * numero;
+            resultado = numeros[0] * numeros[1];
             break;
         case '/':
-            resultado = numero / numero;
+            if (numeros[1] != 0)
+                resultado = numeros[0] / numeros[1];
+            else
+                printf("Erro: operação por zero\n");    
             break;
-        
         default:
             printf("Erro: você escreveu uma operação inválida");
-            return 1;
+            return 1; // Retorna 1 para indicar erro
     }
     
-    printf("%lf, %c, %lf, %lf", operacao, numero, resultado);
+    printf("Resultado: %.2lf\n", resultado);
     
     return 0;
 }
